@@ -8,7 +8,7 @@ make build
 
 make run
 
-### Commands (In Image)
+### Commands (In Container)
 
 make init  - Clone Givaro, FFLAS-FFPACK, and Linbox repos.
 make up    - Update repos.
