@@ -4,18 +4,17 @@ FD=$(IDIR)/fflas-ffpack
 LD=$(IDIR)/linbox
 BL=--with-blas-libs="-llapack -lblas"
 
-tif:
-	cd linbox/tests; make test-invariant-factors
-	cd linbox/tests; make test-frobenius-small
-
 all: up clean build tif
 
-build:
-	cd givaro; ./autogen.sh --prefix=$(GD); make install
-	cd fflas-ffpack; ./autogen.sh --prefix=$(FD) $(BL); make install
-	cd linbox; ./autogen.sh --prefix=$(LD) --enable-debug=yes; make install
+build: givaro fflas linbox
 
-lb:
+givaro:
+	cd givaro; ./autogen.sh --prefix=$(GD); make install
+
+fflas:
+	cd fflas-ffpack; ./autogen.sh --prefix=$(FD) $(BL); make install
+
+linbox:
 	cd linbox; ./autogen.sh --prefix=$(LD) --enable-debug=yes; make install
 
 check:
